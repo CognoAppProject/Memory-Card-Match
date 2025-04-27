@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memory Card Match</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Instruction Modal -->
+  <div id="instruction-modal" class="modal">
+    <div class="modal-content">
+      <h2>How to Play</h2>
+      <p>Flip two cards to find matching pairs. Each level adds more cards!</p>
+      <button onclick="startGame()">Start Game</button>
+    </div>
+  </div>
+
+  <h1>Memory Match Game</h1>
+  <h2 id="level-display">Level: 1</h2>
+  <div class="game-container">
+    <div class="game-board" id="game-board"></div>
+    <button id="next-level-btn" onclick="nextLevel()">Next Level</button>
+  </div>
+
+  <!-- Final Congratulations Screen -->
+  <div id="final-screen" class="modal">
+    <div class="modal-content">
+      <h2>🎉 Great Job!</h2>
+      <p>You’ve completed all the levels!</p>
+      <p id="final-time"></p>
+      <p id="final-score"></p>
+      <button onclick="restartGame()">Play Again</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
