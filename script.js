@@ -4,7 +4,6 @@ let flippedCards = [];
 let lockBoard = false;
 let startTime, timerInterval;
 
-
 function startTimer() {
   startTime = Date.now();
   timerInterval = setInterval(() => {
@@ -18,14 +17,11 @@ function stopTimer() {
   return Math.floor((Date.now() - startTime) / 1000);
 }
 
-
 function startGame() {
   document.getElementById('instruction-modal').style.display = 'none';
   startTimer();
   loadLevel();
 }
-
-
 
 function nextLevel() {
   if (level >= allImages.length - 1) {  // Fix off-by-one error
@@ -39,13 +35,11 @@ function nextLevel() {
   loadLevel();
 }
 
-  
-  function restartGame() {
-    level = 1;
-    document.getElementById('final-screen').style.display = 'none';
-    loadLevel();
-  }
-  
+function restartGame() {
+  level = 1;
+  document.getElementById('final-screen').style.display = 'none';
+  loadLevel();
+}
 
 function loadLevel() {
   const board = document.getElementById('game-board');
@@ -117,13 +111,20 @@ function checkMatch() {
   }
 }
 
-
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
+
 function endGame() {
   const totalTime = stopTimer(); // get total time
   const score = 10;
+
+  // Call Android.submitResult to pass the game results to the Android app
+  if (window.Android && Android.submitResult) {
+    // Assuming you want to pass the activity name as "Memory Game"
+    Android.submitResult("Memory Card Match", score, totalTime);
+    console.log("Result submitted to Android:", score, totalTime);
+  }
 
   document.getElementById('final-screen').style.display = 'flex';
   document.getElementById('final-time').innerText = `⏱ Time: ${totalTime} seconds`;
